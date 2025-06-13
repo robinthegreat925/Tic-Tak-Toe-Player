@@ -15,7 +15,7 @@ int giveindex(int x,int y);
 void indexgive(int index,int *a,int *b);
 void placemark2(char board[3][3],char comp[3][3],int x,int y);
 void wait_for_enter();
-
+int choice;
 void freshboard(char comp[3][3],char board[3][3],int marks[9],int n)
 {
     for(int i=0;i<n;i++)
@@ -156,12 +156,23 @@ void grade(char comp[3][3], int marks[9], int n, int x, int y)
 
     if (is_blocking(comp[0][0], comp[1][1], comp[2][2])) sum += 90;
     if (is_blocking(comp[0][2], comp[1][1], comp[2][0])) sum += 90;
-
-    if (x == 1 && y == 1) sum += 10;
-
-    if ((x == 0 && y == 0) || (x == 0 && y == 2) || (x == 2 && y == 0) || (x == 2 && y == 2)) 
+    if(choice==2)
     {
+     if (x == 1 && y == 1) sum += 10;
+
+     if ((x == 0 && y == 0) || (x == 0 && y == 2) || (x == 2 && y == 0) || (x == 2 && y == 2)) 
+     {
         sum += 25;
+     }
+    }
+    else if(choice==1)
+    {
+     if (x == 1 && y == 1) sum += 25;
+
+     if ((x == 0 && y == 0) || (x == 0 && y == 2) || (x == 2 && y == 0) || (x == 2 && y == 2)) 
+     {
+        sum += 10;
+     }
     }
     int index = giveindex(x, y);
     marks[index] = sum;
@@ -414,7 +425,6 @@ int main()
     printf("enter your choice humie:\n");
     printf("1) Yes, i want to go first\n");
     printf("2) No, i want you to go first\n");
-    int choice;
     scanf("%d",&choice);
     if(choice==1)
     {
